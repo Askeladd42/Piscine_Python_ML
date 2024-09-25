@@ -11,7 +11,7 @@ ft_tuple_list[1] = "France!"
 ft_tuple = tuple(ft_tuple_list)
 ft_set.remove("tutu!")
 ft_set.add("Paris!")
-ft_dict["titi!"] = "42Paris!"
+ft_dict["Hello"] = "42Paris!"
 
 #
 
