@@ -4,6 +4,7 @@ import string
 
 def count_characters(s):
     counts = {
+        'total': len(s),
         'upper': 0,
         'lower': 0,
         'puncts': 0,
@@ -36,9 +37,10 @@ def main():
         input_string = sys.argv[1]
     counts = count_characters(input_string)
     
-    print(f"{counts['uppercase']} upper letters")
-    print(f"{counts['lowercase']} lower letters")
-    print(f"{counts['punctuation']} punctuation marks")
+    print(f"The text contains {counts['total']} characters:")
+    print(f"{counts['upper']} upper letters")
+    print(f"{counts['lower']} lower letters")
+    print(f"{counts['puncts']} punctuation marks")
     print(f"{counts['spaces']} spaces")
     print(f"{counts['digits']} digits")
 
