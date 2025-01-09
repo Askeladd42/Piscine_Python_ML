@@ -29,12 +29,17 @@ def count_characters(s):
 
 def main():
     # your tests and your error handling
-    if len(sys.argv) < 2:
-        input_string = input("Please enter a string: ")
-    elif len(sys.argv) > 2:
-        AssertionError("Too many arguments")
-    else:
-        input_string = sys.argv[1]
+    try:
+        if len(sys.argv) < 2:
+            input_string = input("What is the text to count ?\n")
+        elif len(sys.argv) > 2:
+            raise AssertionError("Too many arguments")
+        else:
+            input_string = sys.argv[1]
+    except EOFError: # Ctrl-D pressed case
+        print("\nNo input provided. Exiting.")
+        return
+
     counts = count_characters(input_string)
     
     print(f"The text contains {counts['total']} characters:")
