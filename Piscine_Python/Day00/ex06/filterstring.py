@@ -1,6 +1,7 @@
 import sys
 from ft_filter import ft_filter
 
+
 def main():
     # your tests and your error handling
     try:
@@ -21,6 +22,7 @@ def main():
         print(result)
     except AssertionError as e:
         print(f"AssertionError: {e}")
+
 
 if __name__ == "__main__":
     main()
