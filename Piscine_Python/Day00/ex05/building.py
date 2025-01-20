@@ -2,6 +2,7 @@ import sys
 
 import string
 
+
 def count_characters(s):
     counts = {
         'total': len(s),
@@ -11,7 +12,7 @@ def count_characters(s):
         'spaces': 0,
         'digits': 0
     }
-    
+
     for char in s:
         if char.isupper():
             counts['upper'] += 1
@@ -23,7 +24,7 @@ def count_characters(s):
             counts['spaces'] += 1
         elif char.isdigit():
             counts['digits'] += 1
-    
+
     return counts
 
 
@@ -36,19 +37,18 @@ def main():
             raise AssertionError("Too many arguments")
         else:
             input_string = sys.argv[1]
-    except EOFError: # Ctrl-D pressed case
+    except EOFError:  # Ctrl-D pressed case
         print("\nNo input provided. Exiting.")
         return
 
     counts = count_characters(input_string)
-    
+
     print(f"The text contains {counts['total']} characters:")
     print(f"{counts['upper']} upper letters")
     print(f"{counts['lower']} lower letters")
     print(f"{counts['puncts']} punctuation marks")
     print(f"{counts['spaces']} spaces")
     print(f"{counts['digits']} digits")
-
 
 
 if __name__ == "__main__":

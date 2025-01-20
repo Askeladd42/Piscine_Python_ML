@@ -1,15 +1,15 @@
 def all_thing_is_obj(object: any) -> int:
-#your code here
+    # your code here
     content = ""
-    if type(object) == str:
+    if type(object) is str:
         content = object + " is in the kitchen"
-    elif type(object) == list:
+    elif type(object) is list:
         content = "List"
-    elif type(object) == tuple:
+    elif type(object) is tuple:
         content = "Tuple"
-    elif type(object) == set:
+    elif type(object) is set:
         content = "Set"
-    elif type(object) == dict:
+    elif type(object) is dict:
         content = "Dict"
     else:
         content = "unknown"

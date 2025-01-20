@@ -1,11 +1,9 @@
-import math
-
 def NULL_not_found(object: any) -> int:
-#your code here
+    #  your code here
     if object is None:
         print(f"Nothing: {object} {type(object)}")
         return 0
-    elif object != object: # This is the only way to check for NaN
+    elif object != object:  # This is the only way to check for NaN
         print(f"Cheese: {object} {type(object)}")
         return 0
     elif object == 0:
@@ -14,7 +12,7 @@ def NULL_not_found(object: any) -> int:
     elif object == '':
         print(f"Empty: {object} {type(object)}")
         return 0
-    elif object == False:
+    elif object is False:
         print(f"Fake: {object} {type(object)}")
         return 0
     else:
