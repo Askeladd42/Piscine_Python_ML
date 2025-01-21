@@ -32,7 +32,7 @@ def main():
     # your tests and your error handling
     try:
         if len(sys.argv) < 2:
-            input_string = input("What is the text to count ?\n")
+            input_string = input("What is the text to count ?\n") + "\n"
         elif len(sys.argv) > 2:
             raise AssertionError("Too many arguments")
         else:

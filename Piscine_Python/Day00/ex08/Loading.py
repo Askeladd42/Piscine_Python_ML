@@ -1,7 +1,8 @@
 import time
 
+
 def ft_tqdm(lst: range):
-  # your code here
+    # your code here
     total = len(lst)
     bar_length = 40
     for i, item in enumerate(lst):

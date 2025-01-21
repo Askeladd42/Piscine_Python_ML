@@ -21,7 +21,7 @@ def to_morse_code(text):
             morse_code.append(NESTED_MORSE[char])
         else:
             raise AssertionError(
-                f"Character '{char}' cannot be converted to Morse code")
+                "the arguments are bad")
     return ' '.join(morse_code)
 
 
@@ -29,11 +29,11 @@ def main():
     # your tests and your error handling
     try:
         if len(sys.argv) != 2:
-            raise AssertionError("Exactly 1 argument is required")
+            raise AssertionError("the arguments are bad")
 
         input_string = sys.argv[1]
         if not isinstance(input_string, str):
-            raise AssertionError("The argument must be a string")
+            raise AssertionError("the arguments are bad")
 
         morse_code = to_morse_code(input_string)
         print(morse_code)
