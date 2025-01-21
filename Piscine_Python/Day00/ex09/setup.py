@@ -1,4 +1,4 @@
-from setuptools import setup, find_packages
+from setuptools import setup
 
 setup(
     name="ft_package",
@@ -10,7 +10,7 @@ setup(
     long_description=open('README.md').read(),
     url="https://github.com/Askeladd42/ft_package",
     license="MIT",
-    packages=find_packages(),
+    packages=["ft_package"],
     classifiers=[],
-    entrypoints={},
+    entry_points={},
 )
