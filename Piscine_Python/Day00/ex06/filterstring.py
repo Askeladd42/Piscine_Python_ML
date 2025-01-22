@@ -18,7 +18,7 @@ def main():
             raise AssertionError("the arguments are bad")
 
         # Use ft_filter to filter words longer than N
-        result = list(ft_filter(lambda word: len(word) > N, S.split()))
+        result = list(ft_filter(lambda word: len(word) >= N, S.split()))
         print(result)
     except AssertionError as e:
         print(f"AssertionError: {e}")
