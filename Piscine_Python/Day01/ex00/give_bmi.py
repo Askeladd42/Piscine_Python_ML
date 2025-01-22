@@ -2,6 +2,8 @@ def give_bmi(
     height: list[int | float],
     weight: list[int | float]
 ) -> list[int | float]:
+    """returns a list of BMI values calculated
+    from the given height and weight lists"""
     if len(height) != len(weight):
         raise ValueError("Height and weight lists must be of the same length.")
     for h, w in zip(height, weight):
