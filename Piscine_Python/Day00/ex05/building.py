@@ -4,6 +4,9 @@ import string
 
 
 def count_characters(s):
+    """counts the number of upper case letters, lower case letters,
+    punctuation marks, spaces and digits in a string, then returns
+    a dictionary with the counts"""
     counts = {
         'total': len(s),
         'upper': 0,

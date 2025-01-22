@@ -14,6 +14,7 @@ NESTED_MORSE = {" ": "/ ", "A": ".- ", "B": "-... ",
 
 
 def to_morse_code(text):
+    """converts a text string to morse code if characters are valid"""
     morse_code = []
     for char in text.upper():
         if char in NESTED_MORSE:

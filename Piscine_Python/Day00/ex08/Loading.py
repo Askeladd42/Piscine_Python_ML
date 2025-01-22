@@ -2,7 +2,8 @@ import time
 
 
 def ft_tqdm(lst: range):
-    # your code here
+    """A simple tqdm implementation: prints a progress bar
+    and percentage of completion."""
     total = len(lst)
     bar_length = 40
     for i, item in enumerate(lst):
