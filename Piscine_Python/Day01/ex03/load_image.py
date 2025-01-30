@@ -3,7 +3,8 @@ from PIL import Image
 
 
 def ft_load(path: str) -> np.ndarray:
-    """Load an image from a file and return it as a numpy array."""
+    """Loads an image from a file and prints its format, and its pixels
+    content in RGB format."""
     try:
         img = Image.open(path)
         if img.format not in ['JPEG', 'JPG']:
