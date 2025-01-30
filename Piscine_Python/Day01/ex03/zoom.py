@@ -16,8 +16,9 @@ def main():
         print(image_array[:1])  # Print the first row of pixels
 
         # Crop the image and convert it to grayscale
-        cropped_image_array = image_array[:400, :400, :]
-        grey_image_array = np.mean(cropped_image_array, axis=2, keepdims=True).astype(np.uint8)
+        cropped_image_array = image_array[:400, :400, 0]
+        grey_image_array = np.mean(cropped_image_array, axis=2,
+                                   keepdims=True).astype(np.uint8)
         print(f"New shape after slicing: {grey_image_array.shape} "
               f"or {grey_image_array.shape[:2]}"
               )
@@ -25,7 +26,6 @@ def main():
 
         # Display the cropped image with scales on x and y axes
         plt.imshow(grey_image_array.squeeze(), cmap='gray')
-        plt.title('Cropped Image')
         plt.show()
 
     except Exception as e:
