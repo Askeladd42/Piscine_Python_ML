@@ -1,6 +1,6 @@
 import matplotlib.pyplot as plt
-import pandas as pd
 from load_csv import load
+
 
 def main():
     data = load("life_expectancy_years.csv")
@@ -23,12 +23,18 @@ def main():
         # Print the summary statistics of the dataset
         print(data.describe())
 
-        # Plot the life expectancy over time
-        plt.plot(data["France"], data["1800":])
-        plt.xlabel("Year")
-        plt.ylabel("Life expectancy")
-        plt.title("Life expectancy over time")
-        plt.show()
+        # Plot the life expectancy over time for the country of your campus
+        country = input("Please enter the country you are looking for: ")
+        if country in data['country'].values:
+            country_data = data.set_index('country').transpose()
+            plt.plot(country_data.index, country_data[country], label=country)
+            plt.xlabel("Year")
+            plt.ylabel("Life expectancy")
+            plt.title(f"{country} Life expectancy Projections")
+            plt.legend()
+            plt.show()
+        else:
+            print(f"Country {country}' not found in the dataset.")
     else:
         print("An error occurred while loading the dataset.")
 
