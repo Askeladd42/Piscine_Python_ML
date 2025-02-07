@@ -3,6 +3,7 @@ from load_csv import load
 
 
 def main():
+    """Program for the graphs display."""
     data = load("population_total.csv")
     if data is not None:
         # Print the first few rows of the dataset
