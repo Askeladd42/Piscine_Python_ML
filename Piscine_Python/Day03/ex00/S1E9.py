@@ -2,7 +2,7 @@ from abc import ABC, abstractmethod
 
 
 class Character(ABC):
-    """Your docstring for Class"""
+    """abstract class"""
     @abstractmethod
     def __init__(self, first_name, last_name, status):
         self.first_name = first_name
@@ -11,8 +11,7 @@ class Character(ABC):
 
 
 class Stark(Character):
-    """Your docstring for Class"""
-    #your code here
+    """subclass of Character"""
     def __init__(self, first_name=None, last_name=None, status=None):
         super().__init__(first_name, last_name, status)
         self.family_name = "Stark"
