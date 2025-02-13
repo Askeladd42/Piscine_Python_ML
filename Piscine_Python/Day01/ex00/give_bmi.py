@@ -4,6 +4,8 @@ import numpy as np
 def give_bmi(height: list[int | float],
              weight: list[int | float]
              ) -> list[int | float]:
+    """Calculates the BMI of a person based on their height and weight.
+    The formula is weight / (height ** 2) and uses the metric system."""
     if len(height) != len(weight):
         raise ValueError("Height and weight lists must be of the same length.")
 
@@ -19,6 +21,8 @@ def give_bmi(height: list[int | float],
 
 
 def apply_limit(bmi: list[int | float], limit: int) -> list[bool]:
+    """Returns a list of booleans indicating whether the BMI is above the
+    given limit."""
     bmi_array = np.array(bmi)
 
     if not np.issubdtype(bmi_array.dtype, np.number):
