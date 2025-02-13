@@ -2,18 +2,39 @@ from S1E9 import Character
 
 
 class Baratheon(Character):
-    def __init__(self, first_name=None, last_name=None, status=None):
-        super().__init__(first_name, last_name, status)
+    """Representing the Baratheon family"""
+    def __init__(self, first_name=None, is_alive=True):
+        """Initialize the Baratheon family"""
+        super().__init__(first_name, is_alive)
         self.family_name = "Baratheon"
-        self.house_words = "Ours is the Fury"
+        self.eyes = "brown"
+        self.hair = "dark"
+
+    def __str__(self):
+        """Return the name of the character"""
+        return f"{self.first_name} {self.family_name}"
+
+    def __repr__(self):
+        """Return the representation of the character"""
+        return self.__str__()
 
 
 class Lannister(Character):
-    def __init__(self, first_name=None, last_name=None, status=None):
-        super().__init__(first_name, last_name, status)
+    """Representing the Lannister family"""
+    def __init__(self, first_name=None, is_alive=True):
+        """Initialize the Lannister family"""
+        super().__init__(first_name, is_alive)
         self.family_name = "Lannister"
-        self.house_words = "Hear Me Roar"
+        self.eyes = "blue"
+        self.hair = "light"
 
+    def __str__(self):
+        return f"{self.first_name} {self.family_name}"
+    
+    def __repr__(self):
+        return self.__str__()
 
-def create_lannister(first_name, last_name, status):
-    return Lannister(first_name, last_name, status)
+    @classmethod
+    def create_lannister(cls, first_name, is_alive=True):
+        """Class method to create a Lannister character"""
+        return cls(first_name, is_alive)
