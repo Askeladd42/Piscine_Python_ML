@@ -16,7 +16,7 @@ def main():
         print(image_array[:1])  # Print the first row of pixels
 
         # Crop the image and convert it to grayscale
-        cropped_image_array = image_array[:400, :400, 0]
+        cropped_image_array = image_array[:400, :400]
         grey_image_array = np.mean(cropped_image_array, axis=2,
                                    keepdims=True).astype(np.uint8)
         print(f"New shape after slicing: {grey_image_array.shape} "
