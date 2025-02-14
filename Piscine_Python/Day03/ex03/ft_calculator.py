@@ -1,22 +1,29 @@
+import numpy as np
+
+
 class calculator:
-    """This is a calculator class"""
-    def __init__(self, number: int) -> None:
-        self.number = number
+    """This is a calculator class for vector operations with a scalar."""
+    def __init__(self, numbers) -> None:
+        self.numbers = np.array(numbers)
 
-    def __str__(self) -> str:
-        return f"{self.number}"
+    def __add__(self, scalar: float) -> None:
+        self.numbers = self.numbers + scalar
+        print(self.numbers.tolist())
 
-    def __repr__(self) -> str:
-        return self.__str__()
+    def __mul__(self, scalar: float) -> None:
+        self.numbers = self.numbers * scalar
+        print(self.numbers.tolist())
 
-    def __add__(self, object) -> None:
-        #your code here
+    def __sub__(self, scalar: float) -> None:
+        self.numbers = self.numbers - scalar
+        print(self.numbers.tolist())
 
-    def __mul__(self, object) -> None:
-        #your code here
+    def __truediv__(self, scalar: float) -> None:
+        try:
+            self.numbers = self.numbers / scalar
+            print(self.numbers.tolist())
+        except ZeroDivisionError:
+            print("Error: division by zero")
 
-    def __sub__(self, object) -> None:
-        #your code here
-
-    def __truediv__(self, object) -> None:
-        #your code here
+    def __repr__(self):
+        return str(self.numbers.tolist())
