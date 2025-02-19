@@ -3,6 +3,9 @@ from load_csv import load
 
 
 def main():
+    """Program that loads the life expectancy dataset
+     and prints the life expectancy over time
+     of a country's campus."""
     data = load("life_expectancy_years.csv")
     if data is not None:
         # Print the first few rows of the dataset
