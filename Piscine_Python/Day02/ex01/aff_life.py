@@ -30,14 +30,18 @@ def main():
         country = input("Please enter the country you are looking for: ")
         if country in data['country'].values:
             country_data = data.set_index('country').transpose()
+            country_data.index = country_data.index.astype(int)  # important
             plt.plot(country_data.index, country_data[country], label=country)
             plt.xlabel("Year")
             plt.ylabel("Life expectancy")
             plt.title(f"{country} Life expectancy Projections")
-            plt.legend()
+            # Set x-axis ticks to be every 40 years
+            start_year = int(country_data.index[0])
+            end_year = int(country_data.index[-1])
+            plt.xticks(range(start_year, end_year + 1, 40))
             plt.show()
         else:
-            print(f"Country {country}' not found in the dataset.")
+            print(f"Country '{country}' not found in the dataset.")
     else:
         print("An error occurred while loading the dataset.")
 
