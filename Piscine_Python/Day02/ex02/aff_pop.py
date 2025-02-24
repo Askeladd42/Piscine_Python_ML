@@ -8,10 +8,24 @@ def millions(x, pos):
     return '%1.0fM' % (x * 1e-6)
 
 
+def convert_population(pop_str):
+    """Convert population string with 'k' or 'M' to a float."""
+    if 'M' in pop_str:
+        return float(pop_str.replace('M', '')) * 1e6
+    elif 'k' in pop_str:
+        return float(pop_str.replace('k', '')) * 1e3
+    else:
+        return float(pop_str)
+
+
 def main():
     """Program for the graphs display."""
     data = load("population_total.csv")
     if data is not None:
+        # Convert population data to float
+        for column in data.columns[1:]:
+            data[column] = data[column].apply(convert_population)
+
         # Print the first few rows of the dataset
         print(data.head())
 
