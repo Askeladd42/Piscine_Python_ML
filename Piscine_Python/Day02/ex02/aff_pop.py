@@ -35,7 +35,8 @@ def main():
         campus_country = input("Please enter the country of your campus: ")
         other_country = input("Please enter another country of your choice: ")
 
-        if campus_country in data['country'].values and other_country in data['country'].values:
+        if (campus_country in data['country'].values and
+                other_country in data['country'].values):
             country_data = data.set_index('country').transpose()
             country_data.index = country_data.index.astype(int)
 
