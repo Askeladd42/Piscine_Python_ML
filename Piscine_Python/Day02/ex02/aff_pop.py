@@ -30,7 +30,8 @@ def main():
         # Print the summary statistics of the dataset
         print(data.describe())
 
-        # Plot the population over time for the country of your campus and another country
+        # Plot the population over time for the country of your campus and
+        # another country
         campus_country = input("Please enter the country of your campus: ")
         other_country = input("Please enter another country of your choice: ")
 
@@ -38,8 +39,10 @@ def main():
             country_data = data.set_index('country').transpose()
             country_data.index = country_data.index.astype(int)
 
-            plt.plot(country_data.index, country_data[campus_country], label=campus_country)
-            plt.plot(country_data.index, country_data[other_country], label=other_country)
+            plt.plot(country_data.index, country_data[campus_country],
+                     label=campus_country)
+            plt.plot(country_data.index, country_data[other_country],
+                     label=other_country)
 
             plt.xlabel("Year")
             plt.ylabel("Population")
@@ -51,7 +54,8 @@ def main():
             plt.xlim(1800, 2050)
 
             # Set y-axis ticks to be every 20 million
-            max_population = max(country_data[campus_country].max(), country_data[other_country].max())
+            max_population = max(country_data[campus_country].max(),
+                                 country_data[other_country].max())
             plt.yticks(range(0, int(max_population) + 20000000, 20000000))
 
             # Format y-axis labels to show in millions
