@@ -4,13 +4,20 @@ from load_csv import load
 
 
 def millions(x, pos):
-    """The two args are the value and tick position."""
+    """The two args are the value and tick position for millions."""
     return '%1.0fM' % (x * 1e-6)
 
 
+def billions(x, pos):
+    """The two args are the value and tick position for billions."""
+    return '%1.0fB' % (x * 1e-9)
+
+
 def convert_population(pop_str):
-    """Convert population string with 'k' or 'M' to a float."""
-    if 'M' in pop_str:
+    """Convert population string with 'k', 'M' or 'B' to a float."""
+    if 'B' in pop_str:
+        return float(pop_str.replace('B', '')) * 1e9
+    elif 'M' in pop_str:
         return float(pop_str.replace('M', '')) * 1e6
     elif 'k' in pop_str:
         return float(pop_str.replace('k', '')) * 1e3
@@ -54,6 +61,9 @@ def main():
             country_data = data.set_index('country').transpose()
             country_data.index = country_data.index.astype(int)
 
+            # Delimiting the data to the years 1800-2050
+            country_data = country_data.loc[1800:2050]
+
             plt.plot(country_data.index, country_data[campus_country],
                      label=campus_country)
             plt.plot(country_data.index, country_data[other_country],
@@ -62,11 +72,11 @@ def main():
             plt.xlabel("Year")
             plt.ylabel("Population")
             plt.title("Population Projections")
-            plt.legend()
+            plt.legend(loc='lower right')
 
             # Set x-axis ticks to be every 40 years from 1800 to 2050
-            plt.xticks(range(1800, 2051, 40), rotation=45)
-            plt.xlim(1800, 2050)
+            plt.xticks(range(1800, 2051, 40))
+            plt.xlim(1790, 2060)
 
             # Set y-axis ticks to be every 20 million
             max_population = max(country_data[campus_country].max(),
@@ -76,6 +86,11 @@ def main():
             # Format y-axis labels to show in millions
             formatter = FuncFormatter(millions)
             plt.gca().yaxis.set_major_formatter(formatter)
+
+            # Optional: Format y-axis labels to show in billions
+            # instead of millions
+            # formatter = FuncFormatter(billions)
+            # plt.gca().yaxis.set_major_formatter(formatter)
 
             plt.show()
         else:

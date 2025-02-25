@@ -1,4 +1,5 @@
 import matplotlib.pyplot as plt
+from matplotlib.ticker import FuncFormatter
 from load_csv import load
 
 
@@ -23,7 +24,17 @@ def main():
         plt.xlabel("Gross domestic product")
         plt.ylabel("Life Expectancy ")
         plt.title("1900")
-        # plt.legend(["Countries"])
+
+        # Delimiting the results for a better visualization
+        plt.xscale('log')
+        plt.xlim(300, 11000)
+        plt.xticks([300, 1000, 10000])
+
+        # Format x-axis ticks by hundreds thenn thousands
+        formatter = FuncFormatter(lambda x, _: f'{int(x/1000)}k'
+                                  if x >= 1000 else f'{int(x)}')
+        plt.gca().get_xaxis().set_major_formatter(formatter)
+
         plt.show()
     else:
         print("An error occurred while loading the datasets.")
