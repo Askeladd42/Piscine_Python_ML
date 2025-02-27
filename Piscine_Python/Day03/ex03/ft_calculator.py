@@ -19,11 +19,11 @@ class calculator:
         print(self.numbers.tolist())
 
     def __truediv__(self, scalar: float) -> None:
-        try:
-            self.numbers = self.numbers / scalar
-            print(self.numbers.tolist())
-        except ZeroDivisionError:
+        if scalar == 0:
             print("Error: division by zero")
+            return
+        self.numbers = self.numbers / scalar
+        print(self.numbers.tolist())
 
     def __repr__(self):
         return str(self.numbers.tolist())

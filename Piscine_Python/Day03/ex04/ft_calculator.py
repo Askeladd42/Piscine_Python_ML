@@ -8,11 +8,11 @@ class calculator:
     @staticmethod
     def add_vec(V1: list[float], V2: list[float]) -> None:
         """Calculate and print the addition of two vectors."""
-        result = [x + y for x, y in zip(V1, V2)]
+        result = [float(x) + float(y) for x, y in zip(V1, V2)]
         print(f"Add Vector is : {result}")
 
     @staticmethod
     def sous_vec(V1: list[float], V2: list[float]) -> None:
         """Calculate and print the subtraction of two vectors."""
-        result = [x - y for x, y in zip(V1, V2)]
+        result = [float(x) - float(y) for x, y in zip(V1, V2)]
         print(f"Sous Vector is: {result}")
