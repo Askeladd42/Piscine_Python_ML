@@ -7,6 +7,8 @@ def callLimit(limit: int):
             if count < limit:
                 count += 1
                 return function(*args, **kwargs)
-            return "No more calls available"
+            print(
+                f"Error: <function {function.__name__} "
+                f"at {hex(id(function))}> call too many times")
         return limit_function
     return callLimiter

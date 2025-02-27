@@ -13,9 +13,11 @@ def outer(x: int | float, function) -> object:
     and returns the result of the function
     passed as an argument to outer."""
     count = [0]  # Settled as a list to avoid using global variables.
+    result = [x]
 
     def inner() -> float:
         count[0] += 1
-        return function(x) ** count[0]
+        result[0] = function(result[0])
+        return result[0]
 
     return inner
