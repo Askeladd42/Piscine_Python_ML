@@ -8,7 +8,7 @@ class Baratheon(Character):
         super().__init__(first_name, is_alive)
         self.family_name = "Baratheon"
         self.eyes = "brown"
-        self.hair = "dark"
+        self.hairs = "dark"
 
     def __str__(self):
         """Return the name of the character"""
@@ -26,7 +26,7 @@ class Lannister(Character):
         super().__init__(first_name, is_alive)
         self.family_name = "Lannister"
         self.eyes = "blue"
-        self.hair = "light"
+        self.hairs = "light"
 
     def __str__(self):
         return f"{self.first_name} {self.family_name}"

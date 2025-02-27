@@ -5,7 +5,7 @@ class Character(ABC):
     """Your docstring for Class"""
     @abstractmethod
     def __init__(self, first_name, is_alive):
-        """Your docstring for Constuctor"""
+        """Your docstring for Constructor"""
         self.first_name = first_name
         self.is_alive = is_alive
 
@@ -17,5 +17,5 @@ class Character(ABC):
 class Stark(Character):
     """Your docstring for Class"""
     def __init__(self, first_name=None, is_alive=True):
-        """Your docstring for Constuctor"""
+        """Your docstring for Constructor"""
         super().__init__(first_name, is_alive)
