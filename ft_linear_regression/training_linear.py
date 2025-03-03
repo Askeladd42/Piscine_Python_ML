@@ -4,17 +4,25 @@ import matplotlib.pyplot as plt
 
 
 def estimate_price(mileage, theta0, theta1):
+    """Formula to estimate the price of a car given its mileage"""
     return theta0 + (theta1 * mileage)
 
 
 def load_data(file_path):
-    data = np.loadtxt(file_path, delimiter=',', skiprows=1)
-    mileage = data[:, 0]
-    price = data[:, 1]
+    """Load the data from the csv file"""
+    data = pd.read_csv(file_path)
+    mileage = data['km'].values
+    price = data['price'].values
     return mileage, price
 
 
+def normalize_data(data):
+    """Normalize the data"""
+    return (data - np.mean(data)) / np.std(data)
+
+
 def train_model(mileage, price, learning_rate=0.01, iterations=1000):
+    """Train the model to find the best theta0 and theta1"""
     m = len(mileage)
     theta0 = 0
     theta1 = 0
@@ -29,11 +37,13 @@ def train_model(mileage, price, learning_rate=0.01, iterations=1000):
 
 
 def save_model(theta0, theta1, file_path):
+    """Save the model to a file"""
     with open(file_path, 'w') as f:
         f.write(f"{theta0},{theta1}")
 
 
 def plot_results(mileage, price, theta0, theta1):
+    """Plot the data points and the regression line"""
     plt.scatter(mileage, price, color='blue', label='Data points')
     plt.plot(
         mileage, estimate_price(mileage, theta0, theta1),
@@ -46,12 +56,22 @@ def plot_results(mileage, price, theta0, theta1):
     plt.show()
 
 
+def calculate_precision(mileage, price, theta0, theta1):
+    """Calculate the mean squared error of the model"""
+    predictions = estimate_price(mileage, theta0, theta1)
+    mse = np.mean((predictions - price) ** 2)
+    return mse
+
+
 def main():
+    """Main function of the program"""
     mileage, price = load_data('data.csv')
     theta0, theta1 = train_model(mileage, price)
     save_model(theta0, theta1, 'model.txt')
     print(f"Model trained with theta0: {theta0}, theta1: {theta1}")
     plot_results(mileage, price, theta0, theta1)
+    mse = calculate_precision(mileage, price, theta0, theta1)
+    print(f"Mean Squared Error of the model: {mse}")
 
 
 if __name__ == "__main__":
