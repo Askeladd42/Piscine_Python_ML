@@ -66,6 +66,8 @@ def calculate_precision(mileage, price, theta0, theta1):
 def main():
     """Main function of the program"""
     mileage, price = load_data('data.csv')
+    mileage = normalize_data(mileage)
+    price = normalize_data(price)
     theta0, theta1 = train_model(mileage, price)
     save_model(theta0, theta1, 'model.txt')
     print(f"Model trained with theta0: {theta0}, theta1: {theta1}")
