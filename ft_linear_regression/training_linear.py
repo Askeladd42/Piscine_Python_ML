@@ -71,9 +71,9 @@ def main():
     theta0, theta1 = train_model(mileage, price)
     save_model(theta0, theta1, 'model.txt')
     print(f"Model trained with theta0: {theta0}, theta1: {theta1}")
-    plot_results(mileage, price, theta0, theta1)
     mse = calculate_precision(mileage, price, theta0, theta1)
     print(f"Mean Squared Error of the model: {mse}")
+    plot_results(mileage, price, theta0, theta1)
 
 
 if __name__ == "__main__":
