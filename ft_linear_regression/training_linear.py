@@ -21,7 +21,7 @@ def normalize_data(data):
     return (data - np.mean(data)) / np.std(data)
 
 
-def train_model(mileage, price, learning_rate=0.01, iterations=1000):
+def train_model(mileage, price, learning_rate, iterations):
     """Train the model to find the best theta0 and theta1"""
     m = len(mileage)
     theta0 = 0
@@ -63,17 +63,56 @@ def calculate_precision(mileage, price, theta0, theta1):
     return mse
 
 
+# Converts normalized thetas to real-world thetas
+def denormalize_thetas(theta0_norm, theta1_norm, mileage_mean, mileage_std,
+                       price_mean, price_std):
+    theta1_real = theta1_norm * (price_std / mileage_std)
+    theta0_real = (
+        price_mean + price_std * theta0_norm
+        - theta1_real * mileage_mean
+    )
+    return theta0_real, theta1_real
+
+
 def main():
-    """Main function of the program"""
+    """Main function to execute the training process"""
+    # Load data
     mileage, price = load_data('data.csv')
-    mileage = normalize_data(mileage)
-    price = normalize_data(price)
-    theta0, theta1 = train_model(mileage, price)
+    mileage_mean, mileage_std = np.mean(mileage), np.std(mileage)
+    price_mean, price_std = np.mean(price), np.std(price)
+
+    mileage_norm = normalize_data(mileage)
+    price_norm = normalize_data(price)
+
+    theta0, theta1 = train_model(mileage_norm, price_norm, 0.01, 10000)
     save_model(theta0, theta1, 'model.txt')
-    print(f"Model trained with theta0: {theta0}, theta1: {theta1}")
-    mse = calculate_precision(mileage, price, theta0, theta1)
+    # Save normalization parameters for later use
+    with open('norm_params.txt', 'w') as f:
+        f.write(f"{mileage_mean},{mileage_std},{price_mean},{price_std}")
+
+    print(f"Model trained with normalized theta0: {theta0}, theta1: {theta1}")
+    mse = calculate_precision(mileage_norm, price_norm, theta0, theta1)
     print(f"Mean Squared Error of the model: {mse}")
-    plot_results(mileage, price, theta0, theta1)
+
+    # Denormalize thetas for real-world predictions
+    theta0_real, theta1_real = denormalize_thetas(
+        theta0,
+        theta1,
+        mileage_mean,
+        mileage_std,
+        price_mean,
+        price_std
+    )
+    print(
+        f"Denormalized thetas: theta0 = {theta0_real}, "
+        f"theta1 = {theta1_real}"
+    )
+
+    # Save real thetas for use in prediction
+    save_model(theta0_real, theta1_real, 'model.txt')
+
+    # Plot regression on original data
+    plot_results(mileage, price, theta0_real, theta1_real)
 
 
 if __name__ == "__main__":
